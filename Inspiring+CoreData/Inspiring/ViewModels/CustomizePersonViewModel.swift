@@ -27,9 +27,6 @@ extension CustomizePersonViewModelDelegate {
 class CustomizePersonViewModel {
     
     // MARK: - Properties
-    private let container: NSPersistentContainer = AppDelegate.persistentContainer
-    private let context: NSManagedObjectContext = AppDelegate.persistentContainer.viewContext
-    private var fetchedResultsController: NSFetchedResultsController<Person>?
     private weak var delegate: CustomizePersonViewModelDelegate?
     private var state: CustomizationState = .create {
         didSet {
@@ -61,7 +58,6 @@ class CustomizePersonViewModel {
                         }
                     }
                     self?.quoteMessages = quoteMsgs
-                    self?.removeQuotes(for: person) // Deletes quotes from DB after they are stored in memory
                 }
                 self?.imageUrl = person.imageUrl ?? ""
             }
@@ -74,7 +70,7 @@ class CustomizePersonViewModel {
             for quote in quotes {
                 person.managedObjectContext?.delete(quote)
             }
-            try? context.save()
+        try? AppDelegate.container.viewContext.save()
     }
 
     final func resetData() {
@@ -86,7 +82,7 @@ class CustomizePersonViewModel {
     }
     
     private func createPerson(name: String, dateOfBirth: String, dateOfDeath: String, description: String) {
-        container.performBackgroundTask {  [weak self] context in
+        AppDelegate.container.performBackgroundTask {  [weak self] context in
             guard let welf = self else { return }
             let person = Person(context: context)
             person.name = name
@@ -103,17 +99,22 @@ class CustomizePersonViewModel {
                 }
             }
             person.quotes = NSSet(array: quotes)
-            try? context.save()
+            do {
+                try context.save()
+            } catch {
+                print(error)
+            }
         }
     }
     
     private func editPerson(name: String, dateOfBirth: String, dateOfDeath: String, description: String) {
-        guard let oldPerson = person else { return }
-        container.performBackgroundTask({ [weak self] (context) in
+        DispatchQueue.main.async { [weak self] in
             guard let welf = self else { return }
+            guard let oldPerson = welf.person else { return }
             oldPerson.name = name
             oldPerson.dob = dateOfBirth
             oldPerson.dod = dateOfDeath
+            oldPerson.imageUrl = welf.imageUrl
             oldPerson.personDescription = description
             var quotes = [Quote]()
             if let managedObjCtx = oldPerson.managedObjectContext {
@@ -123,10 +124,10 @@ class CustomizePersonViewModel {
                     quotes.append(quote)
                 }
             }
+            welf.removeQuotes(for: oldPerson)
             oldPerson.quotes = NSSet(array: quotes)
-            try? context.save()
-            
-        })
+            try? oldPerson.managedObjectContext?.save()
+        }
     }
     
     final func customizePerson(name: String, dateOfBirth: String, dateOfDeath: String, description: String) {
@@ -165,10 +166,6 @@ class CustomizePersonViewModel {
     
     final func removeQuote(at index: Int) {
         quoteMessages.remove(at: index)
-    }
-    
-    final func getPerson(at index: Int) -> InspiringPerson {
-        return PeopleRepository.shared.get(personAt: index)
     }
 }
 

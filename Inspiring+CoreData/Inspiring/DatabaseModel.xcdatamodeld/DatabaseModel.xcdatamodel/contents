@@ -6,7 +6,7 @@
         <attribute name="imageUrl" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="personDescription" optional="YES" attributeType="String"/>
-        <relationship name="quotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Quote" inverseName="person" inverseEntity="Quote"/>
+        <relationship name="quotes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Quote" inverseName="person" inverseEntity="Quote"/>
     </entity>
     <entity name="Quote" representedClassName=".Quote" syncable="YES" codeGenerationType="category">
         <attribute name="quoteMessage" optional="YES" attributeType="String"/>

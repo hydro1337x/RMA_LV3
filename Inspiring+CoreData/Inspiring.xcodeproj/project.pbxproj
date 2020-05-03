@@ -12,13 +12,11 @@
 		0C730CF12450B6BB00627BB3 /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C730CEF2450B6BB00627BB3 /* PersonTableViewCell.xib */; };
 		0C730CF42450BCE100627BB3 /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C730CF22450BCE100627BB3 /* QuoteTableViewCell.swift */; };
 		0C730CF52450BCE100627BB3 /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C730CF32450BCE100627BB3 /* QuoteTableViewCell.xib */; };
-		0CA892782459E4080063D750 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA892772459E4080063D750 /* DBManager.swift */; };
 		0CB76BDF244F7A2900B0F2D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB76BDE244F7A2900B0F2D6 /* AppDelegate.swift */; };
 		0CB76BE1244F7A2900B0F2D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB76BE0244F7A2900B0F2D6 /* SceneDelegate.swift */; };
 		0CB76BE6244F7A2900B0F2D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB76BE4244F7A2900B0F2D6 /* Main.storyboard */; };
 		0CB76BE8244F7A2D00B0F2D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CB76BE7244F7A2D00B0F2D6 /* Assets.xcassets */; };
 		0CB76BEB244F7A2D00B0F2D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB76BE9244F7A2D00B0F2D6 /* LaunchScreen.storyboard */; };
-		0CB76BF5244F7E9100B0F2D6 /* InspiringPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB76BF4244F7E9100B0F2D6 /* InspiringPerson.swift */; };
 		0CB76BF7244F886A00B0F2D6 /* InspiringTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB76BF6244F886A00B0F2D6 /* InspiringTabBarController.swift */; };
 		0CB76BF9244F88D200B0F2D6 /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB76BF8244F88D200B0F2D6 /* PeopleTableViewController.swift */; };
 		0CB76BFB244F890700B0F2D6 /* CustomizePersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB76BFA244F890700B0F2D6 /* CustomizePersonViewController.swift */; };
@@ -35,7 +33,6 @@
 		0C730CEF2450B6BB00627BB3 /* PersonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonTableViewCell.xib; sourceTree = "<group>"; };
 		0C730CF22450BCE100627BB3 /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTableViewCell.swift; sourceTree = "<group>"; };
 		0C730CF32450BCE100627BB3 /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuoteTableViewCell.xib; sourceTree = "<group>"; };
-		0CA892772459E4080063D750 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		0CB76BDB244F7A2900B0F2D6 /* Inspiring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inspiring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB76BDE244F7A2900B0F2D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CB76BE0244F7A2900B0F2D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +40,6 @@
 		0CB76BE7244F7A2D00B0F2D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0CB76BEA244F7A2D00B0F2D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0CB76BEC244F7A2D00B0F2D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0CB76BF4244F7E9100B0F2D6 /* InspiringPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspiringPerson.swift; sourceTree = "<group>"; };
 		0CB76BF6244F886A00B0F2D6 /* InspiringTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspiringTabBarController.swift; sourceTree = "<group>"; };
 		0CB76BF8244F88D200B0F2D6 /* PeopleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
 		0CB76BFA244F890700B0F2D6 /* CustomizePersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizePersonViewController.swift; sourceTree = "<group>"; };
@@ -133,10 +129,8 @@
 		0CBFDC6C245DED93008A89AD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0CA892772459E4080063D750 /* DBManager.swift */,
 				0CBFDC6E245DEDA8008A89AD /* Person.swift */,
 				0CBFDC6D245DEDA8008A89AD /* Quote.swift */,
-				0CB76BF4244F7E9100B0F2D6 /* InspiringPerson.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -215,7 +209,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CBFDC70245DEDA8008A89AD /* Person.swift in Sources */,
-				0CB76BF5244F7E9100B0F2D6 /* InspiringPerson.swift in Sources */,
 				0CB76BF7244F886A00B0F2D6 /* InspiringTabBarController.swift in Sources */,
 				0C54766D2451DE12006B3DF4 /* CustomDatePicker.swift in Sources */,
 				0CB76BFF244F905300B0F2D6 /* PeopleTableViewModel.swift in Sources */,
@@ -223,7 +216,6 @@
 				0C730CF42450BCE100627BB3 /* QuoteTableViewCell.swift in Sources */,
 				0CB76BF9244F88D200B0F2D6 /* PeopleTableViewController.swift in Sources */,
 				0CB76BDF244F7A2900B0F2D6 /* AppDelegate.swift in Sources */,
-				0CA892782459E4080063D750 /* DBManager.swift in Sources */,
 				0CB76BFB244F890700B0F2D6 /* CustomizePersonViewController.swift in Sources */,
 				0CB76BE1244F7A2900B0F2D6 /* SceneDelegate.swift in Sources */,
 				0CB76C01244F919900B0F2D6 /* CustomizePersonViewModel.swift in Sources */,

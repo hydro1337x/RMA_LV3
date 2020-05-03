@@ -10,15 +10,13 @@ import UIKit
 import CoreData
 
 protocol PeopleTableViewModelDelegate: class {
-    
+   
 }
 
 class PeopleTableViewModel {
     
     // MARK: - Properties
-    private let container: NSPersistentContainer = AppDelegate.persistentContainer
-    private let context: NSManagedObjectContext = AppDelegate.persistentContainer.viewContext
-    private var fetchedResultsController: NSFetchedResultsController<Person>?
+    var fetchedResultsController: NSFetchedResultsController<Person>?
     private weak var delegate: PeopleTableViewModelDelegate?
     
     // MARK: - Init
@@ -27,12 +25,8 @@ class PeopleTableViewModel {
     }
     
     // MARK: - Methods
-    final func numberOfRows(in section: Int) -> Int {
-         if let sections = fetchedResultsController?.sections, sections.count > 0 {
-                   return sections[section].numberOfObjects
-               } else {
-                   return 0
-               }
+    final var numberOfRows: Int {
+        return fetchedResultsController?.fetchedObjects?.count ?? 1
     }
     
     var heightOfRow: CGFloat {
@@ -45,11 +39,13 @@ class PeopleTableViewModel {
     
     final func removePerson(at indexPath: IndexPath) {
         if let person = fetchedResultsController?.object(at: indexPath) {
-            container.performBackgroundTask({ [weak self] (context) in
-                guard self != nil else { return }
-                context.delete(person)
-                try? context.save()
-            })
+            AppDelegate.container.viewContext.delete(person)
+            do {
+                try AppDelegate.container.viewContext.save()
+                fetchPeople() // fetches the updated database in order to update to numberOfRows return value
+            } catch {
+                print(error)
+            }
         }
     }
     
@@ -63,7 +59,7 @@ class PeopleTableViewModel {
         let request: NSFetchRequest<Person> = Person.fetchRequest()
         let selector = #selector(NSString.caseInsensitiveCompare(_:))
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: selector)]
-        fetchedResultsController = NSFetchedResultsController<Person>(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController<Person>(fetchRequest: request, managedObjectContext: AppDelegate.container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         try? fetchedResultsController?.performFetch()
     }
     

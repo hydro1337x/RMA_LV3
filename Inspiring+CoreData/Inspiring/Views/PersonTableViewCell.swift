@@ -47,8 +47,13 @@ class PersonTableViewCell: UITableViewCell {
     final func config(delegate: PersonTableViewCellDelegate?, personIndex: IndexPath?, imageUrl: String, name: String, dateOfBirth: String, dateOfDeath: String, description: String) {
         self.personIndex = personIndex
         self.delegate = delegate
-        if let url = URL(string: imageUrl), let imageData = try? Data(contentsOf: url) {
-            personImageView.image = UIImage(data: imageData)
+        if let url = URL(string: imageUrl) {
+            do {
+                let imageData = try Data(contentsOf: url)
+                personImageView.image = UIImage(data: imageData)
+            } catch  {
+                print(error)
+            }
         }
         nameLabel.text = name
         dateOfBirthLabel.text = dateOfBirth
