@@ -130,6 +130,15 @@ class CustomizePersonViewModel {
         }
     }
     
+    final func saveImageTemporary(image: UIImage) -> URL {
+        let imageName = UUID().uuidString + ".jpeg"
+        let tempDirectory = NSTemporaryDirectory()
+        let path = tempDirectory.appending(imageName)
+        let data = image.jpegData(compressionQuality: 1) as NSData?
+        data?.write(toFile: path, atomically: true)
+        return URL(fileURLWithPath: path)
+    }
+    
     final func customizePerson(name: String, dateOfBirth: String, dateOfDeath: String, description: String) {
         if state == .create {
             createPerson(name: name,

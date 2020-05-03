@@ -141,11 +141,10 @@ class CustomizePersonViewController: UIViewController, UINavigationControllerDel
 
 extension CustomizePersonViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let imageUrl = info[.imageURL] as? URL {
-            if let imageData = try? Data(contentsOf: imageUrl) {
-                pictureImageView.image = UIImage(data: imageData)
-            }
-            viewModel.add(imageUrl: imageUrl.absoluteString)
+        if let image = info[.editedImage] as? UIImage {
+            let url = viewModel.saveImageTemporary(image: image)
+            pictureImageView.image = image
+            viewModel.add(imageUrl: url.absoluteString)
         }
         picker.dismiss(animated: true, completion: nil)
     }
